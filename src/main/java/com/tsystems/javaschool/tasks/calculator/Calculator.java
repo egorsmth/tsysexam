@@ -1,7 +1,11 @@
 package com.tsystems.javaschool.tasks.calculator;
 
+import java.util.Arrays;
+import java.util.HashSet;
+
 public class Calculator {
 
+    private String statement;
     /**
      * Evaluate statement represented as string.
      *
@@ -12,7 +16,52 @@ public class Calculator {
      */
     public String evaluate(String statement) {
         // TODO: Implement the logic here
-        return "";
+        this.statement = statement;
+        if (!this.areBracketsMatch()) {
+            return null;
+        }
+        if (!this.isValidSymbols()) {
+            return null;
+        }
+
+        this.parse();
     }
 
+    private boolean areBracketsMatch() {
+        int openBracketCounter = 0;
+        for (char ch: this.statement.toCharArray()) {
+            if (ch == ')' && openBracketCounter == 0) {
+                return false;
+            } else if (ch == '(') {
+                openBracketCounter++;
+            } else {
+                openBracketCounter--;
+            }
+        }
+
+        return openBracketCounter == 0;
+    }
+
+    private boolean isValidSymbols() {
+        for (char ch: this.statement.toCharArray()) {
+            if (!isValidSymbol(ch)) return false;
+        }
+        return true;
+    }
+
+    private boolean isValidSymbol(char symbol) {
+        HashSet<Character> validBr = new HashSet<>(Arrays.asList('(', ')'));
+        HashSet<Character> validOp = new HashSet<>(Arrays.asList('+', '/', '-', '*'));
+
+        return Character.isDigit(symbol)
+                || symbol == '.'
+                || validOp.contains(symbol)
+                || validBr.contains(symbol);
+    }
+
+    private void parse() {
+        String trimmed = this.statement;
+
+
+    }
 }
