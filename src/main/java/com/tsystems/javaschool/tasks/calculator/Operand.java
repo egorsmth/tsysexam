@@ -2,10 +2,7 @@ package com.tsystems.javaschool.tasks.calculator;
 
 public class Operand implements ExpressionNode {
 
-    private ExpressionNode left;
-    private ExpressionNode right;
-
-    private enum Type {
+    public static enum Type {
         FLOAT,
         INT
     }
@@ -21,22 +18,6 @@ public class Operand implements ExpressionNode {
     @Override
     public void accept(Visitor visitor) {
         visitor.visit(this);
-    }
-
-    public void setLeft(ExpressionNode node) {
-        left = node;
-    }
-
-    public void setRight(ExpressionNode node) {
-        right = node;
-    }
-
-    public ExpressionNode getRight() {
-        return right;
-    }
-
-    public ExpressionNode getLeft() {
-        return left;
     }
 
     public Type getType() {

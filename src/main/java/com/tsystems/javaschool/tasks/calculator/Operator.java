@@ -2,8 +2,11 @@ package com.tsystems.javaschool.tasks.calculator;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.BiFunction;
 
 public class Operator implements ExpressionNode {
+    private ExpressionNode left;
+    private ExpressionNode right;
 
     private static Map<String, Integer> operationPriorities = new HashMap<String, Integer>() {{
         put("+", 1);
@@ -35,5 +38,21 @@ public class Operator implements ExpressionNode {
 
     public int getPriority() {
         return priority;
+    }
+
+    public void setLeft(ExpressionNode node) {
+        left = node;
+    }
+
+    public void setRight(ExpressionNode node) {
+        right = node;
+    }
+
+    public ExpressionNode getRight() {
+        return right;
+    }
+
+    public ExpressionNode getLeft() {
+        return left;
     }
 }

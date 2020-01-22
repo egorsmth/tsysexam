@@ -24,7 +24,10 @@ public class Calculator {
             return null;
         }
 
-        this.parse();
+        Parser p = new Parser(statement);
+        Operator op = p.parse();
+        Evaluator ev = new Evaluator(op);
+        return Float.toString(ev.evaluate());
     }
 
     private boolean areBracketsMatch() {
@@ -34,7 +37,7 @@ public class Calculator {
                 return false;
             } else if (ch == '(') {
                 openBracketCounter++;
-            } else {
+            } else if (ch == ')') {
                 openBracketCounter--;
             }
         }
@@ -57,11 +60,5 @@ public class Calculator {
                 || symbol == '.'
                 || validOp.contains(symbol)
                 || validBr.contains(symbol);
-    }
-
-    private void parse() {
-        String trimmed = this.statement;
-
-
     }
 }
