@@ -6,8 +6,6 @@ import java.util.HashSet;
 public class Parser {
     private final String statement;
 
-    private States currentState;
-
     private enum States {
         INT,
         FLOAT,
@@ -30,7 +28,7 @@ public class Parser {
             if (localState == null) {
                 if (currentChar == '(') {
                     int closedBracketIndex = statement.lastIndexOf(')');
-                    cur = parse(statement.substring(i, closedBracketIndex));
+                    cur = parse(statement.substring(i+1, closedBracketIndex));
                     i = closedBracketIndex;
                 } else if (Character.isDigit(currentChar)) {
                     accum.append(currentChar);
@@ -89,7 +87,7 @@ public class Parser {
                     localState = States.INT;
                 } else if (currentChar == '(') {
                     int closedBracketIndex = statement.lastIndexOf(')');
-                    ExpressionNode en = parse(statement.substring(i, closedBracketIndex));
+                    ExpressionNode en = parse(statement.substring(i+1, closedBracketIndex));
                     cur.setRight(en);
                     i = closedBracketIndex;
                     localState = States.OPERAND;
