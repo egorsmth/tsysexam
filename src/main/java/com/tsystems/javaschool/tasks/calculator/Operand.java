@@ -2,12 +2,14 @@ package com.tsystems.javaschool.tasks.calculator;
 
 public class Operand implements ExpressionNode {
 
+
     public static enum Type {
         FLOAT,
         INT
     }
-    private final Type type;
-    private final String value;
+
+    private Type type;
+    private String value;
 
     public Operand(String op, Type type)
     {

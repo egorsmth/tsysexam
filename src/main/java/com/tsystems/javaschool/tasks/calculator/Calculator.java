@@ -16,6 +16,10 @@ public class Calculator {
      */
     public String evaluate(String statement) {
         // TODO: Implement the logic here
+        if (statement == null) {
+            return null;
+        }
+
         this.statement = statement;
         if (!this.areBracketsMatch()) {
             return null;
@@ -24,10 +28,14 @@ public class Calculator {
             return null;
         }
 
-        Parser p = new Parser(statement);
-        Operator op = p.parse();
-        Evaluator ev = new Evaluator(op);
-        return Float.toString(ev.evaluate());
+        try {
+            Parser p = new Parser(statement);
+            Operator op = p.parse();
+            Evaluator ev = new Evaluator(op);
+            return ev.evaluate();
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     private boolean areBracketsMatch() {

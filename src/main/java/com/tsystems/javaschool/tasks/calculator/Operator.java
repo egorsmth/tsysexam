@@ -55,4 +55,131 @@ public class Operator implements ExpressionNode {
     public ExpressionNode getLeft() {
         return left;
     }
+
+    private boolean couldBeInt(float a) {
+        return a == (float) Math.round(a);
+    }
+
+    public Operand operation(int a, int b) {
+        switch (this.value) {
+            case "+":
+                return new Operand(Integer.toString(a+b), Operand.Type.INT);
+            case "-":
+                return new Operand(Integer.toString(a-b), Operand.Type.INT);
+            case "*":
+                return new Operand(Integer.toString(a*b), Operand.Type.INT);
+            case "/":
+                if (b == 0)
+                    throw new IllegalArgumentException();
+                float res = (float)a/b;
+                if (couldBeInt(res))
+                    return new Operand(Integer.toString((int)res), Operand.Type.INT);
+                else
+                    return new Operand(Float.toString(res), Operand.Type.FLOAT);
+            default:
+                throw new IllegalArgumentException();
+        }
+    }
+
+    public Operand operation(float a, int b) {
+        float res;
+        switch (this.value) {
+            case "+":
+                res = a+b;
+                if (couldBeInt(res))
+                    return new Operand(Integer.toString((int)res), Operand.Type.INT);
+                else
+                    return new Operand(Float.toString(res), Operand.Type.FLOAT);
+            case "-":
+                res = a-b;
+                if (couldBeInt(res))
+                    return new Operand(Integer.toString((int)res), Operand.Type.INT);
+                else
+                    return new Operand(Float.toString(res), Operand.Type.FLOAT);
+            case "*":
+                res = a*b;
+                if (couldBeInt(res))
+                    return new Operand(Integer.toString((int)res), Operand.Type.INT);
+                else
+                    return new Operand(Float.toString(res), Operand.Type.FLOAT);
+            case "/":
+                if (b == 0)
+                    throw new IllegalArgumentException();
+                res = a/b;
+                if (couldBeInt(res))
+                    return new Operand(Integer.toString((int)res), Operand.Type.INT);
+                else
+                    return new Operand(Float.toString(res), Operand.Type.FLOAT);
+            default:
+                throw new IllegalArgumentException();
+        }
+    }
+
+    public Operand operation(float a, float b) {
+        float res;
+        switch (this.value) {
+            case "+":
+                res = a+b;
+                if (couldBeInt(res))
+                    return new Operand(Integer.toString((int)res), Operand.Type.INT);
+                else
+                    return new Operand(Float.toString(res), Operand.Type.FLOAT);
+            case "-":
+                res = a-b;
+                if (couldBeInt(res))
+                    return new Operand(Integer.toString((int)res), Operand.Type.INT);
+                else
+                    return new Operand(Float.toString(res), Operand.Type.FLOAT);
+            case "*":
+                res = a*b;
+                if (couldBeInt(res))
+                    return new Operand(Integer.toString((int)res), Operand.Type.INT);
+                else
+                    return new Operand(Float.toString(res), Operand.Type.FLOAT);
+            case "/":
+                if (b == 0)
+                    throw new IllegalArgumentException();
+                res = a/b;
+                if (couldBeInt(res))
+                    return new Operand(Integer.toString((int)res), Operand.Type.INT);
+                else
+                    return new Operand(Float.toString(res), Operand.Type.FLOAT);
+            default:
+                throw new IllegalArgumentException();
+        }
+    }
+
+    public Operand operation(int a, float b) {
+        float res;
+        switch (this.value) {
+            case "+":
+                res = a+b;
+                if (couldBeInt(res))
+                    return new Operand(Integer.toString((int)res), Operand.Type.INT);
+                else
+                    return new Operand(Float.toString(res), Operand.Type.FLOAT);
+            case "-":
+                res = a-b;
+                if (couldBeInt(res))
+                    return new Operand(Integer.toString((int)res), Operand.Type.INT);
+                else
+                    return new Operand(Float.toString(res), Operand.Type.FLOAT);
+            case "*":
+                res = a*b;
+                if (couldBeInt(res))
+                    return new Operand(Integer.toString((int)res), Operand.Type.INT);
+                else
+                    return new Operand(Float.toString(res), Operand.Type.FLOAT);
+            case "/":
+                if (b == 0)
+                    throw new IllegalArgumentException();
+                res = a/b;
+                if (couldBeInt(res))
+                    return new Operand(Integer.toString((int)res), Operand.Type.INT);
+                else
+                    return new Operand(Float.toString(res), Operand.Type.FLOAT);
+            default:
+                throw new IllegalArgumentException();
+        }
+    }
 }
